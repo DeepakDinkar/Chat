@@ -1,0 +1,12 @@
+.margin-auto {
+    margin: 10% auto;
+}
+
+input:focus {
+    border: 2px solid #00827c;
+}
+
+.chat-content {
+    height: 35vh;
+    overflow: auto;
+}

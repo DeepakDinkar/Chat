@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="mySlides">
+    <div class="numbertext">1 / 6</div>
+    <img src="../assets/Chrysanthemum.jpg" class="image">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 6</div>
+    <img src="../assets/Desert.jpg" class="image">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 6</div>
+    <img src="../assets/Hydrangeas.jpg" class="image">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">4 / 6</div>
+    <img src="../assets/Jellyfish.jpg" class="image">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">5 / 6</div>
+    <img src="../assets/Koala.jpg" class="image">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">6 / 6</div>
+    <img src="../assets/Lighthouse.jpg" class="image">
+  </div>
+
+  <a class="prev" (click)="plusSlides(-1)">❮</a>
+  <a class="next" (click)="plusSlides(1)">❯</a>
+
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="../assets/Chrysanthemum.jpg" style="width:100%" (click)="currentSlide(1)" alt="The Woods">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="../assets/Desert.jpg" style="width:100%" (click)="currentSlide(2)" alt="Trolltunga, Norway">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="../assets/Hydrangeas.jpg" style="width:100%" (click)="currentSlide(3)" alt="Mountains and fjords">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="../assets/Jellyfish.jpg" style="width:100%" (click)="currentSlide(4)" alt="Northern Lights">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="../assets/Koala.jpg" style="width:100%" (click)="currentSlide(5)" alt="Nature and sunrise">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="../assets/Lighthouse.jpg" style="width:100%" (click)="currentSlide(6)" alt="Snowy Mountains">
+    </div>
+  </div>
+</div>
+<div class="chat-input">
+  <input type="text" name="chat">
+  <button>Send</button>
+</div>
+<div class="chat-messages"></div>
