@@ -2,18 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { ChatComponent } from './chat/chat.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  { path: 'left', component: LeftMenuComponent },
-  { path: 'chat', component: ChatComponent },
-  { path: 'gallery', loadChildren: './mid-gallery/gallery.module#GalleryModule' },
-  { path: '', pathMatch: 'full', redirectTo: 'chat' }
+    { path: 'chat', component: ChatComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'contacts', component: ContactsComponent },
+    { path: '', pathMatch: 'full', redirectTo: 'login' }
 ];
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  declarations: []
+    imports: [CommonModule, RouterModule.forRoot(routes)],
+    exports: [RouterModule],
+    declarations: []
 })
 export class AppRoutingModule {}
