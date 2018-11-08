@@ -1,5 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,8 +15,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
     loginGroup: FormGroup;
+    loginError = false;
 
-    constructor(private route: Router, private fb: FormBuilder) {}
+    constructor(
+        private route: Router,
+        private fb: FormBuilder,
+        private http: HttpClient
+    ) {}
 
     ngOnInit() {
         this.createLoginForm();
@@ -23,9 +34,21 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    navigate(routeString: string, formValue: any) {
-        this.route.navigate([routeString], {
-            queryParams: { userName: formValue.userName }
-        });
+    loginSubmit(formValue: any) {
+        this.http
+            .post('http://localhost:3000/login', formValue, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .toPromise()
+            .then(body => {
+                console.log(body);
+                this.navigate('/contacts');
+            })
+            .catch(error => {
+                this.loginError = true;
+            });
+    }
+    navigate(routeString: string) {
+        this.route.navigate([routeString]);
     }
 }

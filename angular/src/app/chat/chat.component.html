@@ -1,8 +1,8 @@
 <div class="ui card margin-auto">
     <div class="content">
-        <a class="header">{{userName}}
+        <a class="header">{{user.userName}}
             <span class="avatar right floated">
-                <img src="../../assets/images/matt.jpg">
+                <img [src]="'assets/images/png/' + user.profilePic">
             </span>
         </a>
         <span>{{typingString}}</span>
@@ -10,12 +10,12 @@
     </div>
     <div class="content chat-content">
         <div class="ui comments">
-            <div class="comment" *ngFor="let message of messages" [ngClass]="{'sender':message.user === userName}">
+            <div class="comment" *ngFor="let message of messages" [ngClass]="{'sender':message.to.userName === user.userName}">
                 <a class="avatar">
-                    <img src="../../assets/images/matt.jpg">
+                    <img [src]="'assets/images/png/' + message.to.profilePic">
                 </a>
                 <div class="content">
-                    <a class="author">{{message.user | titlecase}}</a>
+                    <a class="author">{{message.to.userName | titlecase}}</a>
                     <div class="metadata">
                         <span class="date">{{message.time | date: 'h:mm a'}}</span>
                     </div>
@@ -27,8 +27,7 @@
         </div>
     </div>
     <div class="extra content">
-        <div class="ui input"><input type="text" (focus)="onFocus()" (blur)="onBlur()" [(ngModel)]="message"
-                placeholder="Enter Message"></div>
+        <div class="ui input"><input type="text" (focus)="onFocus()" [(ngModel)]="message" placeholder="Enter Message"></div>
         <button class="ui inverted orange button" (click)="sendMessage(message)">Send</button>
     </div>
 </div>

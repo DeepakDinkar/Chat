@@ -4,22 +4,11 @@
     </div>
     <div class="content">
         <div class="ui middle aligned animated selection list">
-            <div class="item" (click)="navigate('/chat','Helen')">
-                <img class="ui avatar image" src="assets/images/png/man-1.png">
+            <div *ngFor="let contact of contacts" class="item"
+            (click)="navigate('/chat',contact)">
+                <img class="ui avatar image" [src]="'assets/images/png/'+ contact.profilePic">
                 <div class="content">
-                    <div class="header">Helen</div>
-                </div>
-            </div>
-            <div class="item" (click)="navigate('/chat','Christian')">
-                <img class="ui avatar image" src="assets/images/png/man-2.png">
-                <div class="content">
-                    <div class="header">Christian</div>
-                </div>
-            </div>
-            <div class="item" (click)="navigate('/chat','Daniel')">
-                <img class="ui avatar image" src="assets/images/png/man-3.png">
-                <div class="content">
-                    <div class="header">Daniel</div>
+                    <div class="header">{{contact.userName}}</div>
                 </div>
             </div>
         </div>

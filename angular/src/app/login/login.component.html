@@ -1,6 +1,6 @@
 <div class="ui card margin-auto">
     <div class="content">
-        <form class="ui form" [formGroup]="loginGroup" (ngSubmit)="navigate('/contacts', loginGroup.value)">
+        <form class="ui form" [ngClass]="{'error':loginError }" [formGroup]="loginGroup" (ngSubmit)="loginSubmit(loginGroup.value)">
             <div class="field" [ngClass]="{'error':loginGroup.get('userName').invalid && loginGroup.dirty}">
                 <label>User Name</label>
                 <input type="text" formControlName="userName" placeholder="User Name">
@@ -9,8 +9,12 @@
                 <label>Password</label>
                 <input type="password" formControlName="password" placeholder="Password">
             </div>
+            <div class="ui error message">
+                <div class="header">Error</div>
+                <p>Invalid UserName / Password</p>
+            </div>
             <button class="ui blue button" type="submit" [disabled]="loginGroup.invalid && loginGroup.dirty">Login</button>
-            <button class="ui inverted yellow right floated button">Register</button>
+            <a class="ui inverted yellow right floated button" (click)="navigate('/register')">Register</a>
         </form>
     </div>
 </div>

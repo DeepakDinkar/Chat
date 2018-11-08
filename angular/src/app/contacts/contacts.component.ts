@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChatsService } from '../service/chat.service';
 
 @Component({
     selector: 'app-contacts',
@@ -7,13 +9,28 @@ import { Router } from '@angular/router';
     styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-    constructor(private route: Router) {}
+    contacts = [];
+    constructor(
+        private route: Router,
+        private http: HttpClient
+    ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.getUsers();
+    }
 
-    navigate(routeString: string, contact: string) {
+    navigate(routeString: string, contact: any) {
         this.route.navigate([routeString], {
-            queryParams: { userName: contact }
+            queryParams: { user: JSON.stringify(contact) }
         });
+    }
+
+    private getUsers() {
+        this.http
+            .get('http://localhost:3000/contacts')
+            .toPromise()
+            .then(contacts => {
+               this.contacts = <Array<any>>contacts;
+            });
     }
 }
