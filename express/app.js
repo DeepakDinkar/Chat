@@ -1,6 +1,5 @@
 // Server Configuration
 const express = require('express');
-const rxjs = require('rxjs');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -13,15 +12,12 @@ app.use(bodyParser.json());
 // Routing Methods
 app.get('/', (req, res) => res.send('Hello World'));
 app.get('/contacts', (req, res) => res.send(users));
-app.post('/login', (req, res) => validateUser(req, res));
+app.post('/login', (req, res) => loginUser(req, res));
 app.post('/register', (req, res) => registerUser(req, res));
 
 // Socket Connections
 io.on('connection', socket => {
-    createUser(socket);
-    sendMessage(socket);
-    notifyTyping(socket);
-    removeUser(socket);
+    connectUser(socket);
 });
 
 // Listening to Port
@@ -29,23 +25,36 @@ http.listen(3000, () => {
     console.log('listening on 3000');
 });
 
-// Manipulation Functions
+// Connects user or replaces the socket.id with existing user
+function connectUser(socket) {
+    socket.on('updateUser', userName => {
+        const user = validateUser(userName);
+        console.log(validateUser(userName));
+        if(user){
+            user.id = socket.id;
+        }
+    });
+    sendMessage(socket);
+}
 
-function validateUser(request, response) {
-    const user = users.find(existingUser => existingUser.userName === request.body.userName);
-    user ? response.send({success: true}) : response.sendStatus(404);
+// Manipulation Functions
+function loginUser(request, response) {
+    const user = validateUser(request.body.userName);
+    user ? response.send({
+        success: true
+    }) : response.sendStatus(404);
 }
 
 function registerUser(request, response) {
-    users.push(request.body);
-    response.send({success: true});
-}
-
-function createUser(socket) {
-    socket.on('creatUser', user => {
-        const index = users.findIndex(existingUser => existingUser === user);
-        users[index].id = socket.id;
-    });
+    const user = validateUser(request.body.userName);
+    if (user === undefined) {
+        users.push(request.body);
+        response.send({
+            success: true
+        });
+    } else {
+        response.sendStatus(404);
+    }
 }
 
 function removeUser(socket) {
@@ -55,9 +64,16 @@ function removeUser(socket) {
 }
 
 function sendMessage(socket) {
-    socket.on('message', msg => {
+    socket.on('message', senderMsg => {
+        const receiver = users.find(user => user.userName === senderMsg.to);
+        socket.to(receiver.id).emit('message', senderMsg);
+        socket.emit('message', senderMsg);
+    });
+}
 
-        io.emit('message', msg);
+function groupMessage(socket) {
+    socket.on('groupMessage', group => {
+        socket.to(group.id).emit(group.msg);
     });
 }
 
@@ -72,4 +88,11 @@ function sendPrivateMessage(socket) {
         io.to(msg.toId).emit('private', msg);
     });
 
+}
+
+
+//Methods used for maintain users
+
+function validateUser(user) {
+    return users.find(existingUser => existingUser.userName === user);
 }
