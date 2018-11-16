@@ -13,22 +13,4 @@ export class ChatsService {
     getSocket(): any {
         return this.socket;
     }
-    // sendMessage(message: string, userName: string) {
-    //     this.socket.emit('message', {
-    //         message: message,
-    //         user: userName,
-    //         time: Date.now()
-    //     });
-    //     this.socket.emit('typing', '');
-    // }
-
-    // receiveMessage() {
-    //      this.socket.on('message', message => {});
-    // }
-
-    // receiveTypingMessage() {}
-
-    // disconnectSocket(userName: string) {
-    //     this.socket.emit('disconnect', userName);
-    // }
 }

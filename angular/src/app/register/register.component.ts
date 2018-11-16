@@ -7,6 +7,7 @@ import {
     Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ChatsService } from '../service/chat.service';
 
 declare var jQuery: any;
 
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit {
             })
             .toPromise()
             .then(register => {
+                sessionStorage.setItem('userName', formValue.userName);
                 this.navigate('/contacts');
             });
     }

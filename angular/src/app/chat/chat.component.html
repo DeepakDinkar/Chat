@@ -10,9 +10,9 @@
     </div>
     <div class="content chat-content">
         <div class="ui comments">
-            <div class="comment" *ngFor="let message of messages" [ngClass]="{'sender':message.to.userName === user.userName}">
+            <div class="comment" *ngFor="let message of messages" [ngClass]="{'sender':message.to === user.userName}">
                 <a class="avatar">
-                    <img [src]="'assets/images/png/' + message.to.profilePic">
+                    <img [src]="'assets/images/png/' + message.to">
                 </a>
                 <div class="content">
                     <a class="author">{{message.to.userName | titlecase}}</a>

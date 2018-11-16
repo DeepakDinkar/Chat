@@ -1,11 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -41,7 +36,7 @@ export class LoginComponent implements OnInit {
             })
             .toPromise()
             .then(body => {
-                console.log(body);
+                sessionStorage.setItem('userName', formValue.userName);
                 this.navigate('/contacts');
             })
             .catch(error => {
