@@ -1,13 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ChatsService } from '../service/chat.service';
 
 declare var jQuery: any;
 
@@ -32,14 +26,15 @@ export class RegisterComponent implements OnInit {
     }
 
     submitRegister(formValue: any) {
+        delete formValue['re_enterPassword'];
         this.http
             .post('http://localhost:3000/register', formValue, {
                 headers: { 'Content-Type': 'application/json' }
             })
             .toPromise()
-            .then(register => {
-                sessionStorage.setItem('userName', formValue.userName);
-                this.navigate('/contacts');
+            .then(user => {
+                sessionStorage.setItem('user', JSON.stringify(user));
+                this.navigate('/main');
             });
     }
 

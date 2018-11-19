@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
                 headers: { 'Content-Type': 'application/json' }
             })
             .toPromise()
-            .then(body => {
-                sessionStorage.setItem('userName', formValue.userName);
-                this.navigate('/contacts');
+            .then(user => {
+                sessionStorage.setItem('user', JSON.stringify(user));
+                this.navigate('/main');
             })
             .catch(error => {
                 this.loginError = true;

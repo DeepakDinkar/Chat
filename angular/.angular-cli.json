@@ -19,11 +19,11 @@
         "prefix": "app",
         "styles": [
             "styles.css",
-            "./assets/semanti-ui/semantic.min.css"
+            "../node_modules/semantic-ui/dist/semantic.css"
         ],
         "scripts": [
-            "./assets/semanti-ui/semantic.min.js",
-            "../node_modules/jquery/dist/jquery.min.js"
+            "../node_modules/jquery/dist/jquery.min.js",
+            "../node_modules/semantic-ui/dist/semantic.min.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {

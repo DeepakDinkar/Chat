@@ -11,6 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactsService } from './contacts.service';
 import { ChatsService } from './service/chat.service';
+import { MainComponent } from './main/main.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChatTabComponent } from './chat-tab/chat-tab.component';
+import { GroupTabComponent } from './group-tab/group-tab.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +22,11 @@ import { ChatsService } from './service/chat.service';
         ChatComponent,
         ContactsComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        MainComponent,
+        ProfileComponent,
+        ChatTabComponent,
+        GroupTabComponent
     ],
     imports: [
         BrowserModule,

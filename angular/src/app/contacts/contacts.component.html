@@ -1,16 +1,9 @@
-<div class="ui card margin-auto">
-    <div class="content">
-        <a class="header">Contacts</a>
-    </div>
-    <div class="content">
-        <div class="ui middle aligned animated selection list">
-            <div *ngFor="let contact of contacts" class="item"
-            (click)="navigate('/chat',contact)">
-                <img class="ui avatar image" [src]="'assets/images/png/'+ contact.profilePic">
-                <div class="content">
-                    <div class="header">{{contact.userName}}</div>
-                </div>
-            </div>
+<div class="ui middle aligned animated selection list">
+    <div *ngFor="let contact of contacts" class="item" (click)="navigate('/chat',contact)">
+        <img class="ui avatar image" [src]="'assets/images/png/'+ contact.profilePic">
+        <div class="content">
+            <div class="header">{{contact.userName}} <span class="logged-user">{{contact.id===loggedUser.id ?
+                    'Logged User': ''}}</span></div>
         </div>
     </div>
 </div>

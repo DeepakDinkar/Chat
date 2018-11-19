@@ -1,0 +1,30 @@
+.main-layout {
+    width: 25%;
+    background: white;
+    margin: 10% auto;
+    border-radius: 5px;
+}
+
+.item{
+    padding: 13px !important;
+    width: auto;
+    margin: auto !important;
+}
+
+.ui.secondary.menu .active#Contacts {
+        background:#fbb408 !important;
+        color: white !important;
+}
+.ui.secondary.menu .active#Chats {
+    background:#00b5ad !important;
+    color: white !important;
+}
+.ui.secondary.menu .active#Groups {
+    background:#b5cc18 !important;
+    color: white !important;
+}
+.ui.secondary.menu .active#Profile {
+    background:#e03997 !important;
+    color: white !important;
+}
+

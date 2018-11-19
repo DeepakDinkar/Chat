@@ -1,0 +1,25 @@
+<div class="main-layout">
+    <div class="ui secondary menu">
+        <a class="item active" id="Contacts" data-tab="Contacts">Contacts</a>
+        <a class="item " id="Chats" data-tab="Chats">Chats</a>
+        <a class="item" id="Groups" data-tab="Groups">Groups</a>
+        <a class="item" id="Profile" data-tab="Profile">Profile</a>
+    </div>
+    <div>
+        <div class="ui active tab segment" data-tab="Contacts">
+            <app-contacts></app-contacts>
+        </div>
+        <div class="ui tab segment" data-tab="Chats">
+            <div class="ui middle aligned animated selection list">
+            </div>
+        </div>
+        <div class="ui tab segment" data-tab="Groups">
+            <div class="ui middle aligned animated selection list">
+
+            </div>
+        </div>
+        <div class="ui tab segment" data-tab="Profile">
+            <app-contacts></app-contacts>
+        </div>
+    </div>
+</div>

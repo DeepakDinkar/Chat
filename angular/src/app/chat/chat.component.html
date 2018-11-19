@@ -10,12 +10,12 @@
     </div>
     <div class="content chat-content">
         <div class="ui comments">
-            <div class="comment" *ngFor="let message of messages" [ngClass]="{'sender':message.to === user.userName}">
+            <div class="comment" *ngFor="let message of messages" [ngClass]="{'sender':message.fromId === loggedUser.id}">
                 <a class="avatar">
-                    <img [src]="'assets/images/png/' + message.to">
+                    <img [src]="'assets/images/png/' + message.avatar">
                 </a>
                 <div class="content">
-                    <a class="author">{{message.to.userName | titlecase}}</a>
+                    <!-- <a class="author">{{message.to.userName | titlecase}}</a> -->
                     <div class="metadata">
                         <span class="date">{{message.time | date: 'h:mm a'}}</span>
                     </div>

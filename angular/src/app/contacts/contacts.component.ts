@@ -10,6 +10,7 @@ import { ChatsService } from '../service/chat.service';
 })
 export class ContactsComponent implements OnInit {
     contacts = [];
+    loggedUser: any;
     constructor(
         private route: Router,
         private http: HttpClient
@@ -17,6 +18,7 @@ export class ContactsComponent implements OnInit {
 
     ngOnInit() {
         this.getUsers();
+        this.loggedUser = JSON.parse(sessionStorage.getItem('user'));
     }
 
     navigate(routeString: string, contact: any) {

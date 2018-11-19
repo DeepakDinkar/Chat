@@ -27,11 +27,10 @@ http.listen(3000, () => {
 
 // Connects user or replaces the socket.id with existing user
 function connectUser(socket) {
-    socket.on('updateUser', userName => {
-        const user = validateUser(userName);
-        console.log(validateUser(userName));
-        if(user){
-            user.id = socket.id;
+    socket.on('updateUser', userId => {
+        const user = getUser(userId);
+        if (user) {
+            user.socketId = socket.id;
         }
     });
     sendMessage(socket);
@@ -39,22 +38,15 @@ function connectUser(socket) {
 
 // Manipulation Functions
 function loginUser(request, response) {
-    const user = validateUser(request.body.userName);
-    user ? response.send({
-        success: true
-    }) : response.sendStatus(404);
+    const user = validateUser(request.body);
+    user ? response.status(200).send(user): response.sendStatus(404);
 }
 
 function registerUser(request, response) {
-    const user = validateUser(request.body.userName);
-    if (user === undefined) {
-        users.push(request.body);
-        response.send({
-            success: true
-        });
-    } else {
-        response.sendStatus(404);
-    }
+    const user = request.body;
+    user.id = setUserId();
+    users.push(request.body);
+    response.status(200).send(user);
 }
 
 function removeUser(socket) {
@@ -65,8 +57,8 @@ function removeUser(socket) {
 
 function sendMessage(socket) {
     socket.on('message', senderMsg => {
-        const receiver = users.find(user => user.userName === senderMsg.to);
-        socket.to(receiver.id).emit('message', senderMsg);
+        const receiver = users.find(user => user.id === senderMsg.toId);
+        socket.to(receiver.socketId).emit('message', senderMsg);
         socket.emit('message', senderMsg);
     });
 }
@@ -93,6 +85,21 @@ function sendPrivateMessage(socket) {
 
 //Methods used for maintain users
 
+function getUser(userId) {
+    return users.find(existingUser => existingUser.id === userId);
+}
+
 function validateUser(user) {
-    return users.find(existingUser => existingUser.userName === user);
+    return users.find(existingUser => existingUser.userName === user.userName &&
+        existingUser.passWord === user.passWord);
+}
+
+function setUserId() {
+    let userId = '';
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 10; i++)
+        userId += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return userId;
 }

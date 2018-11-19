@@ -1,3 +1,14 @@
 .item:hover {
     cursor: pointer;
 }
+
+.logged-user {
+    float: right;
+    font-size: 9px;
+    margin: 0px 10px;
+}
+
+.ui.animated.list:not(.horizontal)>.item:hover {
+    border: 2px solid #00b5ad;
+    background: #00b5ac80 !important;
+}
