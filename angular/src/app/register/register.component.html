@@ -48,10 +48,16 @@
                         </div>
                     </div>
                 </label>
-                <input type="hidden" formControlName="profilePic" [ngModel]="profilePic"/>
+                <input type="hidden" formControlName="profilePic" [ngModel]="profilePic" />
             </div>
-            <button class="ui blue button" type="submit">Register</button>
-            <button class="ui inverted yellow right floated button" (click)="navigate('/login')">Login</button>
+            <div class="ui buttons">
+                <button class="ui yellow button" (click)="navigate('/login')">Login</button>
+                <div class="or"></div>
+                <button class="ui blue right floated button" type="submit">Register</button>
+
+            </div>
+
+
         </form>
     </div>
 </div>

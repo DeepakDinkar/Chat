@@ -11,6 +11,8 @@ import { ChatsService } from '../service/chat.service';
 export class ContactsComponent implements OnInit {
     contacts = [];
     loggedUser: any;
+    private filterContacts = [];
+
     constructor(
         private route: Router,
         private http: HttpClient
@@ -27,12 +29,21 @@ export class ContactsComponent implements OnInit {
         });
     }
 
+    searchContacts(event: any) {
+        const search = event.target.value;
+        if (search !== '') {
+            this.contacts = this.filterContacts.filter(contact => contact.userName.includes(search));
+        } else {
+            this.contacts = this.filterContacts;
+        }
+    }
     private getUsers() {
         this.http
             .get('http://localhost:3000/contacts')
             .toPromise()
             .then(contacts => {
                this.contacts = <Array<any>>contacts;
+               this.filterContacts = <Array<any>>contacts;
             });
     }
 }

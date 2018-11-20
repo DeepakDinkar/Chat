@@ -1,4 +1,8 @@
 <div class="ui middle aligned animated selection list">
+    <div class="ui small action transparent input">
+        <input type="text" placeholder="Search contacts..." (keyup)="searchContacts($event)">
+        <i class="search icon"></i>
+    </div>
     <div *ngFor="let contact of contacts" class="item" (click)="navigate('/chat',contact)">
         <img class="ui avatar image" [src]="'assets/images/png/'+ contact.profilePic">
         <div class="content">

@@ -1,3 +1,38 @@
-<p>
-  profile works!
-</p>
+<div class="ui divider">
+    <div class="ui small circular move up reveal image centered">
+        <img [src]="'assets/images/png/' + loggedUser.profilePic" class="visible content">
+        <img src="/assets/images/png/default.png" class="hidden content">
+    </div>
+    <div class="ui mini action input">
+        <input type="text" placeholder="UserName..." [value]="loggedUser.userName">
+        <button class="ui brown icon button">
+            <i class="edit icon"></i>
+        </button>
+    </div>
+    <div>
+        <div class="ui medium icon input">
+            <input type="textarea" row="2">
+        </div>
+        <div>
+            <button class="ui teal small circular pointing centered icon label ">
+                Update Bio
+            </button>
+        </div>
+        <div class="ui four column grid">
+            <div class="row">
+                <div class="column"><button class="ui mini circular facebook icon button">
+                        <i class="facebook icon"></i>
+                    </button></div>
+                <div class="column"><button class="ui mini circular twitter icon button">
+                        <i class="twitter icon"></i>
+                    </button></div>
+                <div class="column"> <button class="ui mini circular linkedin icon button">
+                        <i class="linkedin icon"></i>
+                    </button></div>
+                <div class="column"><button class="ui mini circular google plus icon button">
+                        <i class="google plus icon"></i>
+                    </button></div>
+            </div>
+        </div>
+    </div>
+</div>

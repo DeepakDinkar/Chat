@@ -2,3 +2,7 @@
     left: 5px;
     position: relative;
 }
+
+.ui.buttons {
+    margin: 0 16%;
+}

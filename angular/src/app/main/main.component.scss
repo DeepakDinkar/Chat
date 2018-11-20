@@ -5,26 +5,32 @@
     border-radius: 5px;
 }
 
-.item{
+.item {
     padding: 13px !important;
     width: auto;
     margin: auto !important;
 }
+.item.active{
+    font-size: 15px;
+}
 
 .ui.secondary.menu .active#Contacts {
-        background:#fbb408 !important;
-        color: white !important;
-}
-.ui.secondary.menu .active#Chats {
-    background:#00b5ad !important;
-    color: white !important;
-}
-.ui.secondary.menu .active#Groups {
-    background:#b5cc18 !important;
-    color: white !important;
-}
-.ui.secondary.menu .active#Profile {
-    background:#e03997 !important;
-    color: white !important;
+    border-bottom: 3px solid #fbb408 !important;
 }
 
+.ui.secondary.menu .active#Chats {
+    border-bottom: 3px solid #00b5ad !important;
+}
+
+.ui.secondary.menu .active#Groups {
+    border-bottom: 3px solid #b5cc18 !important;
+}
+
+.ui.secondary.menu .active#Profile {
+    border-bottom: 3px solid #e03997 !important;
+}
+
+.ui.secondary.pointing.menu,
+.ui.tab {
+    border: 0;
+}

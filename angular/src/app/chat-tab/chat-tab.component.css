@@ -1,0 +1,9 @@
+.ui.divider {
+    border: 0px !important;
+    opacity: 0.5;
+}
+
+.ui.pointing.label {
+    margin: 0 16%;
+    font-size: 11px;
+}
